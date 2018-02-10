@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Caijialinxx</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://at.alicdn.com/t/font_548995_g7ry9wuf3z5jnhfr.js"></script>
+    <style type="text/css">
+      .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: -1.15em;
+        fill: currentColor;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="topNavBar" class="topNavBar">
+        <div class="topNavBar-inner clearfix">
+            <a class="logo" href="#" alt="logo">
+              <span class="cjl">CJL</span><span class="card">card</span>
+            </a>
+            <nav>
+              <ul id="navUl" class="clearfix">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="https://github.com/Caijialinxx" target="_blank">Github</a></li>
+                <li><a href="https://caijialinxx.github.io" target="_blank">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+      </div>
+
+      <script>
+        window.onscroll=function(){
+          if(window.pageYOffset>0){
+            topNavBar.classList.add("topNavBar-scroll");
+            for(i=1;i<navUl.childNodes.length;i=i+2){
+              navUl.childNodes[i].childNodes[0].classList.add("topNavText-scroll");
+            }
+          }
+          else{
+            topNavBar.classList.remove("topNavBar-scroll");
+            for(i=1;i<navUl.childNodes.length;i=i+2){
+              navUl.childNodes[i].childNodes[0].classList.remove("topNavText-scroll");
+            }
+          }
+        }
+        //scrollY pageYOffset scrollTop offsetTop
+        //topNavBar $("#topNavBar")
+        //getElementById getElementsByClassName getElementsByTagName 需要在本页面才能生效
+      </script>
+      
+      <div class="banner">
+        <div class="mask"></div>
+      </div>
+    </header>
+
+    <div class="content">
+      <main id="about">
+        <div class="userCard">
+          <div class="userCard-inner clearfix">
+            <div class="picture">
+              <img src="./images/avatar.jpg" width="299px" alt="头像">
+            </div>
+            <div class="text clearfix">
+              <div class="profile-preword">
+                <span class="welcome">Hello<span class="triangle"></span></span>              
+              </div>
+              <h1>蔡嘉琳</h1>
+              <p>前端开发工程师</p>
+              <hr>
+              <dl>
+                <dt>年龄</dt>
+                <dd>20</dd>
+                <dt>性别</dt>
+                <dd>女</dd>
+                <dt>所在城市</dt>
+                <dd>深圳</dd>
+                <dt>邮箱</dt>
+                <dd>caijialinxx@foxmail.com</dd>
+                <dt>手机</dt>
+                <dd>1371709****</dd>
+              </dl>
+            </div>
+          </div>
+          <footer class="media">
+            <a href="https://github.com/Caijialinxx"  target="_blank">
+              <svg class="icon" aria-hidden="true" style="width:26px;height:26px;vertical-align: -1.05em;">
+                <use xlink:href="#icon-github"></use>
+              </svg>
+            </a>
+            <a href="https://caijialinxx.github.io" target="_blank">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-blog"></use>
+              </svg>
+            </a>
+          </footer>
+        </div>
+  
+        <p class="downloadResume-wrapper">
+            <a class="downloadResume" href="caijialin-resume.pdf" target="_blank" download>下载 PDF 简历</a>
+        </p>
+        
+        <p class="selfIntroduction">
+          蔡嘉琳，....
+        </p>
+      </main>
+  
+      <section id="skills" class="skills">
+        <h2>技能</h2>
+        <ol class="clearfix">
+          <li>
+            <h3>HTML5 &amp; CSS3</h3>
+            <div class="progressBar">
+              <div class="progress" style="width:80%"></div>
+            </div>
+          </li>     <!-- 如果在HTML中添加特殊符号如“&”，则需要添加转义符“\”或者“&amp;” -->
+          <li>
+            <h3>JavaScript</h3>
+            <div class="progressBar">
+              <div class="progress"  style="width:85%"></div>
+            </div>
+          </li>
+          <li>
+            <h3>jQuery</h3>
+            <div class="progressBar">
+              <div class="progress" style="width:50%"></div>
+            </div>
+          </li>
+          <li>
+            <h3>Vue</h3>
+            <div class="progressBar">
+              <div class="progress" style="width:1%"></div>
+            </div>
+          </li>
+          <li>
+            <h3>React</h3>
+            <div class="progressBar">
+              <div class="progress" style="width:1%"></div>
+            </div>
+          </li>
+          <li>
+            <h3>HTTP</h3>
+            <div class="progressBar">
+              <div class="progress" style="width:70%"></div>
+            </div>
+          </li>
+        </ol>
+      </section>
+  
+      <section id="portfolio" class="portfolio">
+        <h2>作品集</h2>
+        <nav>
+          <ol class="clearfix">
+            <li id="nav1">所有</li>
+            <li id="nav2">框架</li>
+            <li id="nav3">原生JS &amp; CSS</li>
+          </ol>
+          <div class="bar">
+            <div id="bar" class="bar-inner state1"></div>
+          </div>
+        </nav>
+        <div class="works clearfix">
+          <div id="big" class="big clearfix"><img src="images/1.jpg" width="600px" alt="作品1"><div class="mask"></div></div>
+          <div id="small" class="small clearfix"><img src="images/2.jpg" width="290px" alt="作品2"><div class="mask"></div></div>
+        </div>
+        <script>
+          nav1.onclick=function(){
+            bar.className = "bar-inner state1";
+            big.style.display="block";
+          }
+          nav2.onclick=function(){
+            bar.className = "bar-inner state2";
+          }
+          nav3.onclick=function(){
+            bar.className = "bar-inner state3";
+            big.style.display="none";
+          }
+        </script>
+      </section>
+    </div>
+
+    <footer class="footer">
+      Made by Caijialinxx
+    </footer>
+  </body>
+</html>
