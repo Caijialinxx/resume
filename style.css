@@ -1,105 +1,138 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-color: #efefef;
-}
-a{
-    color: inherit;
-    text-decoration: none;
-}
-h1,h2,h3,h4,h5,h6{
-    font-weight: normal;
-}
-hr{
-    height: 0;
-    border: none;
-    border-top: 1px solid #dedede;
-}
-ul,ol{
-    list-style: none;
-}
-.clearfix::after{
-    content: "";
-    display: block;
-    clear: both;
-}
+*{ margin: 0; padding: 0; }
+body{ background-color: #efefef; }
+a{ color: inherit; text-decoration: none; }
+h1,h2,h3,h4,h5,h6{ font-weight: normal; }
+hr{ height: 0; border: none; border-top: 1px solid #dedede; }
+ul,ol{ list-style: none; }
+.clearfix::after{ content: ""; display: block; clear: both; }
 
 /* 导航栏整体部分 */
-header{
-    margin-bottom: 40px;
-}
 .topNavBar{
     z-index: 3;         /*导航栏的层级最高*/
     padding: 10px 0;    /*不定义左右边距是为了防止在width为100%的情况下内容溢出*/
-    position: relative; /*与z-index、top、left配合使用，relative为元素预留位置*/
+    position: fixed;    /*与z-index、top、left配合使用。从relative改为fixed，前者会使得导航快速跳转时出现问题，而后者不会。*/
     top: 0;             /*置顶*/
     left: 0;
     width: 100%;
-    transition: background-color 0.3s ease-out, padding 0.3s ease-out;
+    color: #ccc;
+    transition: all 0.3s ease-out;  /*多个效果需要放在同一行且用逗号隔开，若分两条css属性写，则前面的会被后面覆盖*/
 }
-.topNavBar-scroll{
-    position: fixed;    /*使其脱离文档流。不为元素预留空间，通过指定元素相对于viewport的位置来指定元素位置。屏幕滚动时位置不变。*/
+.topNavBar.sticky{
     padding: 0;
+    color: #3d4451;
     background-color: #fff;
     box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.4);
-    transition: background-color 0.3s ease-out, padding 0.3s ease-out;  /*多个效果需要放在同一行且用逗号隔开，若分两条css属性写，则前面的会被后面覆盖*/
-}
-.topNavText-scroll{
-    color: #3d4451;
 }
 /* 为了使整个topNavBar脱离文档流，并解决其带来的不良后果，而添加的div */
-header .topNavBar-inner{
+.topNavBar-inner{
     padding: 10px 16px;
 }
 /* LOGO */
-header .logo{
+.logo{
     float: left;
     padding: 6px 0;
     font-size: 24px;
     font-family: "Segoe UI Black";
 }
-header .logo > .cjl{
+.logo > .cjl{
     color: #E6686A;
     margin-right: 4px;
 }
-header .logo > .card{
+.logo > .card{
     color: #9a9da2;
 }
 /* 导航栏 */
-header nav{
+nav{
     float: right;
     padding: 8px 0 4px 0;
 }
-header nav > ul{
+nav > ul{
     list-style: none;
     margin: 0;
     padding: 0;
 }
-header nav > ul > li{
+nav > ul > li{
+    position: relative;
     float: left;
     margin-left: 17px;
 }
-header nav > ul > li:first-child{
+nav > ul > li:first-child{
     margin-left: 0;
 }
-header nav > ul > li > a{
+nav > ul > li > a{
+    position: relative;
     font-size: 12px;
     font-weight: bold;
     padding: 5px 0 5px;
-    color: #ccc;
+    color: inherit;
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
     display: block;
     text-transform: uppercase;
 }
-header nav > ul > li > a:hover{
-    border-bottom: 3px solid #E6686A;
-    transition: border-bottom 0.2s ease-out;
+nav > ul > li > a::after{
+    content: "";
+    position:absolute;
+    border-radius: 3px;
+    top:100%;
+    left: 0;
+    height: 3px;
+    background-color: #E6686A;
+    animation: a-slide-out 0.2s ease-out;
 }
+nav > ul > li.active > a::after{
+    width: 100%;
+    animation: a-slide-in 0.2s ease-out;
+}
+@keyframes a-slide-in{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+@keyframes a-slide-out{
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0;
+    }
+}
+/* submenu */
+nav > ul > li > ul{
+    display: none;
+    position: absolute;
+    right: 0;
+    padding: 10px 0;
+    white-space: nowrap;
+    background-color: #fff;
+    color: #3d4451;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+nav > ul > li > ul > li{
+    font-size: 14px;
+    padding: 5px 30px;
+}
+nav > ul > li.active > ul{
+    display: block;
+    animation: submenu-slide-in 0.2s ease-out;
+}
+@keyframes submenu-slide-in{
+    0%{
+        margin-right: 100%;
+        opacity: 0;
+    }
+    100%{
+        margin-right: 0;
+        opacity: 1;
+    }
+}
+
+
 /* 背景图 */
-header .banner{
+.banner{
     z-index: 1;
     position: absolute;         /*不为元素预留空间，与top、left结合使用*/
     top: 0;                     /*置顶*/
@@ -110,7 +143,7 @@ header .banner{
     background-position: center center;
     background-size: cover;
 }
-header .banner .mask{
+.banner .mask{
     height: 515px;
     background-color: rgba(0, 0, 0, 0.65);
 }
@@ -119,7 +152,8 @@ header .banner .mask{
 .content{
     z-index: 2;
     position: relative;
-    margin: 0 auto;
+    margin: 0px auto;
+    padding-top: 90px;
     max-width: 940px;
 }
 /* 名片 */
@@ -331,6 +365,5 @@ section.portfolio > .works > .small{
 }
 
 footer.footer{
-    margin: 60px auto;
     text-align: center;
 }
