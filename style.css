@@ -1,10 +1,10 @@
-*{ margin: 0; padding: 0; }
-body{ background-color: #efefef; }
-a{ color: inherit; text-decoration: none; }
-h1,h2,h3,h4,h5,h6{ font-weight: normal; }
-hr{ height: 0; border: none; border-top: 1px solid #dedede; }
-ul,ol{ list-style: none; }
-.clearfix::after{ content: ""; display: block; clear: both; }
+* { margin: 0; padding: 0; }
+body { background-color: #efefef; }
+a { color: inherit; text-decoration: none; }
+h1,h2,h3,h4,h5,h6 { font-weight: normal; }
+hr { height: 0; border: none; border-top: 1px solid #dedede; }
+ul,ol { list-style: none; }
+.clearfix::after { content: ""; display: block; clear: both; }
 
 /* 导航栏整体部分 */
 .topNavBar{
@@ -17,118 +17,55 @@ ul,ol{ list-style: none; }
     color: #ccc;
     transition: all 0.3s ease-out;  /*多个效果需要放在同一行且用逗号隔开，若分两条css属性写，则前面的会被后面覆盖*/
 }
-.topNavBar.sticky{
-    padding: 0;
-    color: #3d4451;
-    background-color: #fff;
-    box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.4);
-}
-/* 为了使整个topNavBar脱离文档流，并解决其带来的不良后果，而添加的div */
-.topNavBar-inner{
-    padding: 10px 16px;
-}
+.topNavBar.sticky { padding: 0; color: #3d4451; background-color: #fff; box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.4); }
+/* 为了使整个topNavBar脱离文档流，并解决其带来的不良后果，而添加的div.topNavBar-inner */
+.topNavBar-inner { padding: 10px 16px; }
 /* LOGO */
-.logo{
-    float: left;
-    padding: 6px 0;
-    font-size: 24px;
-    font-family: "Segoe UI Black";
-}
-.logo > .cjl{
-    color: #E6686A;
-    margin-right: 4px;
-}
-.logo > .card{
-    color: #9a9da2;
-}
+.topNavBar .logo { float: left; padding: 6px 0; font-size: 24px; font-family: "Segoe UI Black"; }
+.topNavBar .logo > .cjl { color: #E6686A; margin-right: 4px; }
+.topNavBar .logo > .card { color: #9a9da2; }
 /* 导航栏 */
-nav{
-    float: right;
-    padding: 8px 0 4px 0;
-}
-nav > ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-nav > ul > li{
-    position: relative;
-    float: left;
-    margin-left: 17px;
-}
-nav > ul > li:first-child{
-    margin-left: 0;
-}
-nav > ul > li > a{
-    position: relative;
+.topNavBar nav { float: right; padding: 8px 0 4px 0; }
+.topNavBar ul#menu > li { float: left; margin-left: 18px; position: relative; /*为了使子元素ul相对于这个li绝对定位*/ }
+.topNavBar ul#menu > li:first-child { margin-left: 0; }
+.topNavBar ul#menu > li > a{
+    position: relative;             /*为了使a::after相对于a绝对定位*/
     font-size: 12px;
     font-weight: bold;
     padding: 5px 0 5px;
     color: inherit;
     border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    display: block;
+    border-bottom: 3px solid transparent;       /*需与a::after的height取值一样（或大于），才能使li被触发后submenu不会遮挡住a::after*/
+    display: block;                             /*使li被触发时，submenu不会忽略a的padding、border及margin*/
     text-transform: uppercase;
 }
-nav > ul > li > a::after{
+.topNavBar ul#menu > li > a::after{
     content: "";
-    position:absolute;
+    position: absolute;
     border-radius: 3px;
     top:100%;
     left: 0;
+    width: 0%;
     height: 3px;
     background-color: #E6686A;
-    animation: a-slide-out 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
-nav > ul > li.active > a::after{
-    width: 100%;
-    animation: a-slide-in 0.2s ease-out;
-}
-@keyframes a-slide-in{
-    0%{
-        width: 0;
-    }
-    100%{
-        width: 100%;
-    }
-}
-@keyframes a-slide-out{
-    0%{
-        width: 100%;
-    }
-    100%{
-        width: 0;
-    }
-}
+.topNavBar ul#menu > li.active > a::after, .topNavBar ul#menu > li.highlight > a::after { width: 100%; }
 /* submenu */
-nav > ul > li > ul{
-    display: none;
-    position: absolute;
-    right: 0;
+.topNavBar ul.submenu{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;         /*相对于父元素li绝对定位*/
+    right: 100%;
     padding: 10px 0;
     white-space: nowrap;
     background-color: #fff;
     color: #3d4451;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease-out;
 }
-nav > ul > li > ul > li{
-    font-size: 14px;
-    padding: 5px 30px;
-}
-nav > ul > li.active > ul{
-    display: block;
-    animation: submenu-slide-in 0.2s ease-out;
-}
-@keyframes submenu-slide-in{
-    0%{
-        margin-right: 100%;
-        opacity: 0;
-    }
-    100%{
-        margin-right: 0;
-        opacity: 1;
-    }
-}
+.topNavBar ul.submenu > li { cursor: pointer; font-size: 14px; padding: 5px 30px; }
+.topNavBar ul#menu > li.active > ul.submenu { visibility: visible; opacity: 1; right: 0; }
 
 
 /* 背景图 */
@@ -143,48 +80,17 @@ nav > ul > li.active > ul{
     background-position: center center;
     background-size: cover;
 }
-.banner .mask{
-    height: 515px;
-    background-color: rgba(0, 0, 0, 0.65);
-}
+.banner .mask { height: 515px; background-color: rgba(0, 0, 0, 0.65); }
 
 
-.content{
-    z-index: 2;
-    position: relative;
-    margin: 0px auto;
-    padding-top: 90px;
-    max-width: 940px;
-}
+.content { z-index: 2; position: relative; margin: 0px auto; padding-top: 90px; max-width: 940px; }
 /* 名片 */
-main{
-    padding-top: 70px;          /*使得锚点定位时不会被导航栏覆盖内容*/
-}
-.userCard{
-    max-width: 940px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-}
-.userCard .userCard-inner{
-    padding: 50px 25px;
-}
-.userCard .picture{
-    float: left;
-    padding: 0 20px;
-}
-.userCard .profile-preword{
-    margin-bottom: 8px;
-}
-.userCard .welcome{
-    background-color: #E6686A;
-    color: #fff;
-    display: inline-block;
-    padding: 5px 10px;
-    font-weight: bold;
-    line-height: 20px;
-    position: relative;
-}
+section#about { margin: 80px auto; }
+.userCard { max-width: 940px; background-color: #fff; box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
+.userCard-inner { padding: 50px 25px; }
+.userCard .picture { float: left; padding: 0 20px; }
+.userCard .profile-preword { margin-bottom: 8px; }
+.userCard .welcome { background-color: #E6686A; color: #fff; display: inline-block; padding: 5px 10px; font-weight: bold; line-height: 20px; position: relative; }
 .userCard .welcome > .triangle{
     display: block;
     position: absolute;
@@ -195,37 +101,14 @@ main{
     left: 5px;
     top: 100%;
 }
-.userCard .text{
-    float: left;
-    padding: 0 20px;
-    width: 57%;
-}
-.userCard .text > h1{
-    margin: 22px 0 10px 0;
-}
-.userCard .text > hr{
-    margin: 20px 0;
-}
-.userCard dl dt, .userCard dl dd{
-    float: left;
-    margin-bottom: 20px;
-}
-.userCard dl dt{
-    width: 30%;
-    font-weight: bold;
-}
-.userCard dl dd{
-    width: 70%;
-    color: #bbb;
-}
-.userCard > footer.media{
-    background-color: #E6686A;
-    text-align: center;
-}
-.userCard > footer.media svg{
-    width: 30px;
-    height: 30px;
-}
+.userCard .text { float: left; padding: 0 20px; width: 57%; }
+.userCard .text > h1 { margin: 22px 0 10px 0; }
+.userCard .text > hr { margin: 20px 0; }
+.userCard dl dt, .userCard dl dd{float: left;margin-bottom: 20px;}
+.userCard dl dt { width: 30%; font-weight: bold; }
+.userCard dl dd { width: 70%; color: #bbb; }
+.userCard > footer.media { background-color: #E6686A; text-align: center; }
+.userCard > footer.media svg { width: 30px; height: 30px; }
 .userCard > footer.media a{
     display: inline-block;
     width: 40px;
@@ -234,14 +117,10 @@ main{
     border-radius: 50%;
     text-align: center;
 }
-.userCard > footer.media a:hover{
-    background-color: #cf5d5f;
-}
+.userCard > footer.media a:hover { background-color: #cf5d5f; }
 
 /* 下载简历 */
-.downloadResume-wrapper{
-    text-align: center;
-}
+.downloadResume-wrapper { text-align: center; }
 .downloadResume-wrapper > .downloadResume{
     display: inline-block;
     font-size: 14px;
@@ -253,117 +132,64 @@ main{
     font-weight: bold;
     margin: 32px;
 }
-.downloadResume-wrapper > .downloadResume:hover{
-    box-shadow: 0 4px 13px 0 rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.2s;
-}
+.downloadResume-wrapper > .downloadResume:hover { box-shadow: 0 4px 13px 0 rgba(0, 0, 0, 0.2); transition: box-shadow 0.2s; }
 
 /* 自我介绍 */
-.selfIntroduction{
-    text-align: center;
-    max-width: 940px;
-    margin: 0 auto;
-    line-height: 20px;
-}
+.selfIntroduction { text-align: center; max-width: 940px; margin: 0 auto; line-height: 20px; }
 
 /* 技能 */
-section.skills,
-section.portfolio{
-    max-width: 940px;
-    margin: 0px auto;
-    padding-top: 70px;
-}
-section.skills h2,
-section.portfolio h2{
-    text-align: center;
-    color: #3d4451;
-    font-size: 34px;
-    line-height: 1.2;
-    font-weight: 600;
-}
-section.skills h3{
-    font-size: 14px;
-    line-height: 1.1;
-    padding-right: 40px;
-}
-section.skills > ol{
-    padding: 20px 30px;
-    max-width: 940px;
-    margin: 30px auto;
-    background-color: #fff;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-}
-section.skills > ol > li{
+section#skills, section#portfolio { max-width: 940px; margin: 80px auto; }
+section#skills h2, section#portfolio h2 { text-align: center; color: #3d4451; font-size: 34px; line-height: 1.2; font-weight: 600; }
+section#skills h3 { font-size: 14px; line-height: 1.1; padding-right: 40px; }
+section#skills > ol { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
+section#skills > ol > li{
     float: left;
     width: 50%;
-    box-sizing: border-box;         /*使得即使添加了padding值也不会影响整体的宽度，即边框和内边距的值包含在width内*/
     padding: 20px;
+    box-sizing: border-box;         /*使得即使添加了padding值也不会影响整体的宽度，即边框和内边距的值包含在width内*/
 }
-section.skills .progressBar{
-    height: 5px;
-    background-color: #fae1e1;
-    border-radius: 2px;
-    margin: 4px 0;
-}
-section.skills .progressBar > .progress{
-    height: 100%;
-    background-color: #E6686A;
-    border-radius: 2px;
-}
+section#skills .progressBar { height: 5px; background-color: #fae1e1; border-radius: 2px; margin: 4px 0; }
+section#skills .progressBar > .progress { height: 100%; background-color: #E6686A; border-radius: 2px; }
 
 /* 作品集 */
-section.portfolio{
-    text-align: center;
-}
-section.portfolio > nav{
-    text-align: center;
-    display: inline-block;
-    margin: 32px;
-}
-section.portfolio > nav > ol > li{
-    float: left;
-    cursor: pointer;
-    margin: 0 5px;
-}
-section.portfolio > nav > ol > li:nth-child(2){
-    margin: 0 50px;
-}
-section.portfolio > nav > .bar{
+section#portfolio { text-align: center; }
+section#portfolio > nav { text-align: center; display: inline-block; margin: 32px; }
+section#portfolio > nav > ol > li { float: left; cursor: pointer; margin: 0 5px; }
+section#portfolio > nav > ol > li:nth-child(2) { margin: 0 50px; }
+section#portfolio > nav > .bar{
     height: 5px;
     background-color: #fff;
     border-radius: 2px;
     margin: 4px 0;
 }
-section.portfolio > nav > .bar > .bar-inner{
+section#portfolio > nav > .bar > .bar-inner{
     height: 100%;
     background-color: #E6686A;
     border-radius: 2px;
     transition: all 0.3s;
 }
-section.portfolio > nav > .bar > .bar-inner.state1{
+section#portfolio > nav > .bar > .bar-inner.state1{
     width: 42px;
     margin-left: 0;
 }
-section.portfolio > nav > .bar > .bar-inner.state2{
+section#portfolio > nav > .bar > .bar-inner.state2{
     width: 42px;
     margin-left: 87px;
 }
-section.portfolio > nav > .bar > .bar-inner.state3{
+section#portfolio > nav > .bar > .bar-inner.state3{
     width: 110px;
     margin-left: 174px;
 }
-section.protfolio > .works{
+section#protfolio > .works{
     max-width: 940px;
     border: 5px solid red;
 }
-section.portfolio > .works > .big{
+section#portfolio > .works > .big{
     float: left;
     margin-right: 50px;
 }
-section.portfolio > .works > .small{
+section#portfolio > .works > .small{
     float: left;
 }
 
-footer.footer{
-    text-align: center;
-}
+footer.footer { text-align: center; }

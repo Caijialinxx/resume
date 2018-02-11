@@ -84,7 +84,7 @@
             </li>
             <li>
               <a href="#portfolio">Portfolio</a>
-              <ul>
+              <ul class="submenu">
                 <li>作品1</li>
                 <li>作品2</li>
                 <li>作品3</li>
@@ -95,7 +95,7 @@
             </li>
             <li>
               <a href="https://caijialinxx.github.io" target="_blank">Blog</a>
-              <ul>
+              <ul class="submenu">
                 <li>博客1</li>
                 <li>博客2</li>
                 <li>博客3</li>
@@ -115,7 +115,7 @@
   </header>
 
   <div class="content">
-    <main id="about">
+    <section data-x id="about">
       <div class="userCard">
         <div class="userCard-inner clearfix">
           <div class="picture">
@@ -165,9 +165,9 @@
       <p class="selfIntroduction">
         蔡嘉琳，....
       </p>
-    </main>
+    </section>
 
-    <section id="skills" class="skills">
+    <section data-x id="skills">
       <h2>技能</h2>
       <ol class="clearfix">
         <li>
@@ -210,7 +210,7 @@
       </ol>
     </section>
 
-    <section id="portfolio" class="portfolio">
+    <section data-x id="portfolio">
       <h2>作品集</h2>
       <nav>
         <ol class="clearfix">
@@ -252,23 +252,39 @@
     Made by Caijialinxx
   </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
 <script>
-// 设置loading
+  // 设置loading
   setTimeout(function () {
     welcome.className = "finished"
   }, 1000)
 
-// 设置topNavBar样式变化
+  // 设置topNavBar样式变化
   window.onscroll = function () {
-    if (window.pageYOffset > 0) {
-      topNavBar.classList.add("sticky");
+    let scrollY = Math.round(window.pageYOffset)
+    if (scrollY > 0) {
+      topNavBar.classList.add("sticky")
+      let section = document.querySelectorAll("[data-x]")
+      let activeIndex = 0
+      for (let i = 1; i < section.length; i++) {
+        let minTop = Math.abs(section[activeIndex].offsetTop - scrollY)
+        let currentTop = Math.abs(section[i].offsetTop - scrollY)
+        if (currentTop < minTop) {
+          activeIndex = i
+        }
+      }
+      let activeLi = document.querySelector("a[href='#" + section[activeIndex].id + "']").parentNode
+      for (let i = 0; i < section.length; i++) {
+        activeLi.parentNode.children[i].classList.remove("highlight")
+      }
+      activeLi.classList.add("highlight")
     }
     else {
-      topNavBar.classList.remove("sticky");
+      topNavBar.classList.remove("sticky")
     }
   }
 
-// 设置导航中的子菜单
+  // 设置导航中的子菜单
   let liTags = document.querySelectorAll("#menu > li")
   for (let i = 0; i < liTags.length; i++) {
     liTags[i].onmouseenter = function (e) {
@@ -276,6 +292,48 @@
     }
     liTags[i].onmouseleave = function (e) {
       e.target.classList.remove("active")
+    }
+  }
+
+
+  // 设置平滑滚动
+  let aTags = document.querySelectorAll("#menu > li > a")
+  for (let i = 0; i < aTags.length; i++) {
+    aTags[i].onclick = function (e) {
+      let href = e.target.getAttribute('href')
+      if (href[0] === "#") {
+        e.preventDefault()           //阻止a便签的锚点跳转事件，使得跳转时页面不会闪动
+        let targetTop = document.querySelector(href).offsetTop - 70
+        let currentTop = window.pageYOffset
+        /*使用库来实现平滑滚动*/
+        // Setup the animation loop.
+        function animate(time) {
+          requestAnimationFrame(animate)
+          TWEEN.update(time)
+        }
+        requestAnimationFrame(animate)            //浏览器根据CPU来求动画变化间隔，相当于duration
+        let coords = { y: currentTop }
+        let tween = new TWEEN.Tween(coords)
+          .to({ y: targetTop }, 1000)             //相当于setInterval()
+          .easing(TWEEN.Easing.Quadratic.InOut)   //选择动画类型
+          .onUpdate(function () {                 //需要执行的动作，相当于setInterval中的function
+            window.scrollTo(0, coords.y)
+          })
+          .start();
+        /*自己使用原生JS来实现平滑滚动*/
+        // let n = 20                   //动几次
+        // let duration = 300 / n       //多长时间动一次
+        // let times = 0
+        // let distancePerTimes = (targetTop - currentTop) / n   //每次移动的距离
+        // let id = setInterval(() => {
+        //   times++
+        //   window.scrollTo(0, currentTop + distancePerTimes * times)
+        //   if (times === n) {
+        //     window.clearInterval(id)
+        //     return
+        //   }
+        // }, duration)
+      }
     }
   }
 </script>
