@@ -15,8 +15,11 @@ ul,ol { list-style: none; }
     left: 0;
     width: 100%;
     color: #ccc;
-    transition: all 0.3s ease-out;  /*多个效果需要放在同一行且用逗号隔开，若分两条css属性写，则前面的会被后面覆盖*/
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease-out;  /*多个效果需要放在同一行且用逗号隔开，若分两条css属性写，则前面的会被后面覆盖*/
 }
+.topNavBar.offset { transform: translateY(-50px); opacity: 0; }
 .topNavBar.sticky { padding: 0; color: #3d4451; background-color: #fff; box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.4); }
 /* 为了使整个topNavBar脱离文档流，并解决其带来的不良后果，而添加的div.topNavBar-inner */
 .topNavBar-inner { padding: 10px 16px; }
@@ -61,12 +64,11 @@ ul,ol { list-style: none; }
     white-space: nowrap;
     background-color: #fff;
     color: #3d4451;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 	transition: all 0.2s ease-out;
 }
 .topNavBar ul.submenu > li { cursor: pointer; font-size: 14px; padding: 5px 30px; }
 .topNavBar ul#menu > li.active > ul.submenu { visibility: visible; opacity: 1; right: 0; }
-
 
 /* 背景图 */
 .banner{
@@ -84,9 +86,11 @@ ul,ol { list-style: none; }
 
 
 .content { z-index: 2; position: relative; margin: 0px auto; padding-top: 90px; max-width: 940px; }
+[data-x] { opacity: 1; transform: translateY(0); transition: all 0.4s ease-out; }
+[data-x].offset { opacity: 0; transform: translateY(50px); }
 /* 名片 */
-section#about { margin: 80px auto; }
-.userCard { max-width: 940px; background-color: #fff; box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
+section#about { margin: 0px auto; padding-top: 80px; }
+.userCard { max-width: 940px; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 .userCard-inner { padding: 50px 25px; }
 .userCard .picture { float: left; padding: 0 20px; }
 .userCard .profile-preword { margin-bottom: 8px; }
@@ -138,19 +142,19 @@ section#about { margin: 80px auto; }
 .selfIntroduction { text-align: center; max-width: 940px; margin: 0 auto; line-height: 20px; }
 
 /* 技能 */
-section#skills, section#portfolio { max-width: 940px; margin: 80px auto; }
+section#skills, section#portfolio { max-width: 940px; margin: 0px auto; padding-top: 80px; }
 section#skills h2, section#portfolio h2 { text-align: center; color: #3d4451; font-size: 34px; line-height: 1.2; font-weight: 600; }
 section#skills h3 { font-size: 14px; line-height: 1.1; padding-right: 40px; }
-section#skills > ol { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
+section#skills > ol { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 section#skills > ol > li{
     float: left;
     width: 50%;
     padding: 20px;
     box-sizing: border-box;         /*使得即使添加了padding值也不会影响整体的宽度，即边框和内边距的值包含在width内*/
 }
-section#skills .progressBar { height: 5px; background-color: #fae1e1; border-radius: 2px; margin: 4px 0; }
-section#skills .progressBar > .progress { height: 100%; background-color: #E6686A; border-radius: 2px; }
-
+section#skills .progressBar { height: 5px; background-color: #fae1e1; border-radius: 2px; margin: 4px 0; overflow: hidden; }
+section#skills .progressBar > .progress { height: 100%; background-color: #E6686A; border-radius: 2px; transition: all 0.3s ease-out; }
+section#skills.offset .progress { transform: translateX(-200px); }
 /* 作品集 */
 section#portfolio { text-align: center; }
 section#portfolio > nav { text-align: center; display: inline-block; margin: 32px; }
@@ -192,4 +196,4 @@ section#portfolio > .works > .small{
     float: left;
 }
 
-footer.footer { text-align: center; }
+footer.footer { text-align: center; margin: 20px 0; }

@@ -68,7 +68,7 @@
   </div>
 
   <header>
-    <div id="topNavBar" class="topNavBar">
+    <div id="topNavBar" class="topNavBar offset">
       <div class="topNavBar-inner clearfix">
         <a class="logo" href="#" alt="logo">
           <span class="cjl">CJL</span>
@@ -115,7 +115,7 @@
   </header>
 
   <div class="content">
-    <section data-x id="about">
+    <section data-x id="about" class="offset">
       <div class="userCard">
         <div class="userCard-inner clearfix">
           <div class="picture">
@@ -167,7 +167,7 @@
       </p>
     </section>
 
-    <section data-x id="skills">
+    <section data-x id="skills" class="offset">
       <h2>技能</h2>
       <ol class="clearfix">
         <li>
@@ -210,7 +210,7 @@
       </ol>
     </section>
 
-    <section data-x id="portfolio">
+    <section data-x id="portfolio" class="offset">
       <h2>作品集</h2>
       <nav>
         <ol class="clearfix">
@@ -257,27 +257,37 @@
   // 设置loading
   setTimeout(function () {
     welcome.className = "finished"
+    about.classList.remove("offset")
+    topNavBar.classList.remove("offset")
   }, 1000)
 
   // 设置topNavBar样式变化
   window.onscroll = function () {
-    let scrollY = Math.round(window.pageYOffset)
-    if (scrollY > 0) {
+    let pageYOffset = Math.round(window.pageYOffset)
+    if (pageYOffset > 0) {
+      //导航栏浮起
       topNavBar.classList.add("sticky")
+
+      //滚动到某一section高亮其对应菜单
       let section = document.querySelectorAll("[data-x]")
-      let activeIndex = 0
+      let nearestIndex = 0
       for (let i = 1; i < section.length; i++) {
-        let minTop = Math.abs(section[activeIndex].offsetTop - scrollY)
-        let currentTop = Math.abs(section[i].offsetTop - scrollY)
-        if (currentTop < minTop) {
-          activeIndex = i
+        let minTop = Math.abs(section[nearestIndex].offsetTop - pageYOffset)
+        let currentSectionDistance = Math.abs(section[i].offsetTop - pageYOffset)
+        if (currentSectionDistance < minTop) {
+          nearestIndex = i
         }
       }
-      let activeLi = document.querySelector("a[href='#" + section[activeIndex].id + "']").parentNode
+      let highlightLi = document.querySelector("a[href='#" + section[nearestIndex].id + "']").parentNode
       for (let i = 0; i < section.length; i++) {
-        activeLi.parentNode.children[i].classList.remove("highlight")
+        highlightLi.parentNode.children[i].classList.remove("highlight")
       }
-      activeLi.classList.add("highlight")
+      highlightLi.classList.add("highlight")
+      //不要将两个不相关的动作，只用同一个状态来表示。如果使用active，则会在页面滚动时触发submenu
+      //highlightLi.classList.add("active")
+
+      //滚动到某一section从下浮起
+      section[nearestIndex].classList.remove("offset")
     }
     else {
       topNavBar.classList.remove("sticky")
@@ -303,7 +313,7 @@
       let href = e.target.getAttribute('href')
       if (href[0] === "#") {
         e.preventDefault()           //阻止a便签的锚点跳转事件，使得跳转时页面不会闪动
-        let targetTop = document.querySelector(href).offsetTop - 70
+        let targetTop = document.querySelector(href).offsetTop
         let currentTop = window.pageYOffset
         /*使用库来实现平滑滚动*/
         // Setup the animation loop.
