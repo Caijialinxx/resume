@@ -78,7 +78,7 @@ ul,ol { list-style: none; }
     left: 0;
     right: 0;
     height: 515px;
-    background-image: url(./images/bg.jpg);
+    background-image: url(../images/bg.jpg);
     background-position: center center;
     background-size: cover;
 }
@@ -96,7 +96,7 @@ section#about { margin: 0px auto; padding-top: 80px; }
     transition: all 0.3s;
     width: 300px;
     height: 360px;
-    background-image: url(/images/avatar.jpg);
+    background-image: url(../images/avatar.jpg);
     background-position: center center;
     background-size: cover;
     float: left;
