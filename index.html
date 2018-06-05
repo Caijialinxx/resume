@@ -35,6 +35,7 @@
           <span class="card">card</span>
         </a>
         <nav>
+          <!-- BEGIN show-submenu.js 的 view -->
           <ul id="menu" class="clearfix">
             <li>
               <a href="#about">About</a>
@@ -65,6 +66,7 @@
               <a href="#contact">Contact</a>
             </li>
           </ul>
+          <!-- END show-submenu.js 的 view -->
         </nav>
       </div>
     </div>
@@ -78,9 +80,7 @@
     <section data-x id="about" class="offset">
       <div class="userCard">
         <div class="userCard-inner clearfix">
-          <div class="picture">
-            <!-- <img src="./images/avatar.jpg" width="299px" alt="头像"> -->
-          </div>
+          <div class="picture"></div>
           <div class="text clearfix">
             <div class="profile-preword">
               <span class="welcome">Hello
@@ -184,6 +184,7 @@
           <div id="bar" class="bar-inner state1"></div>
         </div>
       </nav>
+      <!-- BEGIN slides.js 的 view -->
       <div class="works">
         <!-- Slider main container -->
         <div class="swiper-container">
@@ -202,6 +203,7 @@
           <div class="swiper-button-next"></div>
         </div>
       </div>
+      <!-- END slides.js 的 view -->
       <script>
         nav1.onclick = function () {
           bar.className = "bar-inner state1";
@@ -224,115 +226,12 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.2/js/swiper.min.js"></script>
-<script>
-  // 设置loading
-  setTimeout(function () {
-    welcome.className = "finished"
-    about.classList.remove("offset")
-    topNavBar.classList.remove("offset")
-  }, 1000)
-
-  // 设置topNavBar样式变化
-  window.onscroll = function () {
-    let pageYOffset = Math.round(window.pageYOffset)
-    if (pageYOffset > 0) {
-      //导航栏浮起
-      topNavBar.classList.add("sticky")
-
-      //滚动到某一section高亮其对应菜单
-      let section = document.querySelectorAll("[data-x]")
-      let nearestIndex = 0
-      for (let i = 1; i < section.length; i++) {
-        let minTop = Math.abs(section[nearestIndex].offsetTop - pageYOffset)
-        let currentSectionDistance = Math.abs(section[i].offsetTop - pageYOffset)
-        if (currentSectionDistance < minTop) {
-          nearestIndex = i
-        }
-      }
-      let highlightLi = document.querySelector("a[href='#" + section[nearestIndex].id + "']").parentNode
-      for (let i = 0; i < section.length; i++) {
-        highlightLi.parentNode.children[i].classList.remove("highlight")
-      }
-      highlightLi.classList.add("highlight")
-      //不要将两个不相关的动作，只用同一个状态来表示。如果使用active，则会在页面滚动时触发submenu
-      //highlightLi.classList.add("active")
-
-      //滚动到某一section从下浮起
-      section[nearestIndex].classList.remove("offset")
-    }
-    else {
-      topNavBar.classList.remove("sticky")
-    }
-  }
-
-  // 设置导航中的子菜单
-  let liTags = document.querySelectorAll("#menu > li")
-  for (let i = 0; i < liTags.length; i++) {
-    liTags[i].onmouseenter = function (e) {
-      e.target.classList.add("active")
-    }
-    liTags[i].onmouseleave = function (e) {
-      e.target.classList.remove("active")
-    }
-  }
-
-
-  // 设置平滑滚动
-  let aTags = document.querySelectorAll("#menu > li > a")
-  for (let i = 0; i < aTags.length; i++) {
-    aTags[i].onclick = function (e) {
-      let href = e.target.getAttribute('href')
-      if (href[0] === "#") {
-        e.preventDefault()           //阻止a便签的锚点跳转事件，使得跳转时页面不会闪动
-        let targetTop = document.querySelector(href).offsetTop
-        let currentTop = window.pageYOffset
-        /*使用库来实现平滑滚动*/
-        // Setup the animation loop.
-        function animate(time) {
-          requestAnimationFrame(animate)
-          TWEEN.update(time)
-        }
-        requestAnimationFrame(animate)            //浏览器根据CPU来求动画变化间隔，相当于duration
-        let coords = { y: currentTop }
-        let tween = new TWEEN.Tween(coords)
-          .to({ y: targetTop }, 1000)             //相当于setInterval()
-          .easing(TWEEN.Easing.Quadratic.InOut)   //选择动画类型
-          .onUpdate(function () {                 //需要执行的动作，相当于setInterval中的function
-            window.scrollTo(0, coords.y)
-          })
-          .start();
-        /*自己使用原生JS来实现平滑滚动*/
-        // let n = 20                   //动几次
-        // let duration = 300 / n       //多长时间动一次
-        // let times = 0
-        // let distancePerTimes = (targetTop - currentTop) / n   //每次移动的距离
-        // let id = setInterval(() => {
-        //   times++
-        //   window.scrollTo(0, currentTop + distancePerTimes * times)
-        //   if (times === n) {
-        //     window.clearInterval(id)
-        //     return
-        //   }
-        // }, duration)
-      }
-    }
-  }
-
-  // 作品轮播
-  var mySwiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    // direction: 'vertical',
-    loop: true,
-    // pagination
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
-  })
-</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="js/loading.js"></script>
+<script src="js/scroll.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/smoothy-slide.js"></script>
+<script src="js/slides.js"></script>
 
 </html>
