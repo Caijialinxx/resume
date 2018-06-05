@@ -78,7 +78,7 @@ ul,ol { list-style: none; }
     left: 0;
     right: 0;
     height: 515px;
-    background-image: url(./images/wallhaven-557327.jpg);
+    background-image: url(./images/bg.jpg);
     background-position: center center;
     background-size: cover;
 }
@@ -92,8 +92,17 @@ ul,ol { list-style: none; }
 section#about { margin: 0px auto; padding-top: 80px; }
 .userCard { max-width: 940px; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 .userCard-inner { padding: 50px 25px; }
-.userCard .picture { float: left; padding: 0 20px; }
-.userCard .profile-preword { margin-bottom: 8px; }
+.userCard .picture {
+    transition: all 0.3s;
+    width: 300px;
+    height: 360px;
+    background-image: url(/images/avatar.jpg);
+    background-position: center center;
+    background-size: cover;
+    float: left;
+    margin: 0 20px;
+}
+.userCard .profile-preword { display: block; margin-bottom: 8px; }
 .userCard .welcome { background-color: #E6686A; color: #fff; display: inline-block; padding: 5px 10px; font-weight: bold; line-height: 20px; position: relative; }
 .userCard .welcome > .triangle{
     display: block;
@@ -106,8 +115,8 @@ section#about { margin: 0px auto; padding-top: 80px; }
     top: 100%;
 }
 .userCard .text { float: left; padding: 0 20px; width: 57%; }
-.userCard .text > h1 { margin: 22px 0 10px 0; }
-.userCard .text > hr { margin: 20px 0; }
+.userCard .text h1 { margin: 22px 0 10px 0; }
+.userCard .text hr { margin: 20px 0; }
 .userCard dl dt, .userCard dl dd{float: left;margin-bottom: 20px;}
 .userCard dl dt { width: 30%; font-weight: bold; }
 .userCard dl dd { width: 70%; color: #bbb; }
@@ -122,6 +131,39 @@ section#about { margin: 0px auto; padding-top: 80px; }
     text-align: center;
 }
 .userCard > footer.media a:hover { background-color: #cf5d5f; }
+
+@media (max-width: 950px) {
+    .userCard { max-width: 740px; min-width: 350px; margin: 0 auto;}
+    .userCard .userCard-inner { margin:0 auto; }
+    .userCard .picture {
+        width: 116px;
+        height: 116px;
+        float: left;
+        margin: 0 20px 0 24%;
+        border-radius: 50%;
+    }
+    .userCard .text {
+        float: none;
+        min-width: 260px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 540px) {
+    .userCard { max-width: 400px; min-width: 350px; margin: 0 auto;}
+    .userCard .userCard-inner { margin:0 auto; }
+    .userCard .picture {
+        width: 116px;
+        height: 116px;
+        float: none;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    .userCard .text .brief {
+        text-align: center;
+    }
+    .userCard .profile-preword { display: none; }
+}
+
 
 /* 下载简历 */
 .downloadResume-wrapper { text-align: center; }
@@ -188,12 +230,10 @@ section#protfolio > .works{
     max-width: 940px;
     border: 5px solid red;
 }
-section#portfolio > .works > .big{
-    float: left;
-    margin-right: 50px;
-}
-section#portfolio > .works > .small{
-    float: left;
+/* 作品轮播的自定义样式 */
+section#protfolio > .works .swiper-container {
+    width: 100%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 footer.footer { text-align: center; margin: 20px 0; }
