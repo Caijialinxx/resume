@@ -183,9 +183,10 @@ section#about { margin: 0px auto; padding-top: 80px; }
 /* 自我介绍 */
 .selfIntroduction { text-align: center; max-width: 940px; margin: 0 auto; line-height: 20px; }
 
+/* 子模块的公共样式 */
+section#skills, section#portfolio, section#messages { max-width: 940px; margin: 0px auto; padding-top: 80px; }
+section#skills h2, section#portfolio h2, section#messages h2 { text-align: center; color: #3d4451; font-size: 34px; line-height: 1.2; font-weight: 600; }
 /* 技能 */
-section#skills, section#portfolio { max-width: 940px; margin: 0px auto; padding-top: 80px; }
-section#skills h2, section#portfolio h2 { text-align: center; color: #3d4451; font-size: 34px; line-height: 1.2; font-weight: 600; }
 section#skills h3 { font-size: 14px; line-height: 1.1; padding-right: 40px; }
 section#skills > ol { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 section#skills > ol > li{
@@ -234,6 +235,72 @@ section#protfolio > .works{
 section#protfolio > .works .swiper-container {
     width: 100%;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+/* 留言板 */
+section#messages > ol {
+    padding: 6px 30px;
+    max-width: 940px;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+section#messages > ol > li {
+    position: relative;
+    padding: 16px 0;
+    border-bottom: 1px dashed #cdcfd1;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+section#messages > ol > li:last-child {
+    border-bottom: none;
+}
+section#messages > ol > li > div.msg_username::after {
+    content: '：';
+}
+section#messages > ol > li > div.msg_content {
+    padding-left: 16px;
+    margin: 8px 0;
+}
+section#messages > ol > li > div.msg_time {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #9a9da2;
+    font-size: 12px;
+    line-height: 24px;
+}
+section#messages > form {
+    max-width: 940px;
+    margin: 30px auto;
+    padding: 0px 16px;
+}
+section#messages > form > label {
+    display: block;
+    margin: 20px 0px;
+}
+section#messages > form input, section#messages > form textarea {
+    display: block;
+    margin: 10px 0px;
+    padding: 6px;
+    min-width: 250px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+section#messages > form textarea {
+    max-width: 940px;
+    min-height: 100px;
+}
+section#messages > form input[type=submit] {
+    background: #007aff;
+}
+@media (max-width: 950px) {
+    section#messages { max-width: 740px; min-width: 350px; margin: 0 auto;}
+}
+@media (max-width: 540px) {
+    section#messages { max-width: 400px; min-width: 350px; margin: 0 auto;}
+    section#messages > form textarea { max-width: 368px; min-width: 318px; }
 }
 
 footer.footer { text-align: center; margin: 20px 0; }

@@ -218,6 +218,21 @@
         }
       </script>
     </section>
+
+    <section data-x id="messages">
+      <h2>留言板</h2>
+      <ol>
+      </ol>
+      <form id="postMsgForm">
+        <label>昵称：
+          <input type="text" name="username">
+        </label>
+        <label>留言：
+          <textarea name="content" rows="6"></textarea>
+        </label>
+        <input type="submit" value="发表">
+      </form>
+    </section>
   </div>
 
   <footer class="footer">
@@ -228,7 +243,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.2/js/swiper.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.7.2/dist/av-min.js"></script>
+<!-- 模块化 -->
 <script src="js/loading.js"></script>
+<script src="js/messagesDB.js"></script>
 <script src="js/scroll.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/smoothy-slide.js"></script>
