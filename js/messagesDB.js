@@ -51,11 +51,10 @@
       let username = $('input[name=username]')[0].value.trim(),
         content = $('textarea[name=content]')[0].value
       if (username.length !== 0 && content.trim().length !== 0) {
-        this.model.addMessage(username, content).then(function (msg) {
-          // 刷新并显示新留言
+        this.model.addMessage(username, content).then((msg) => {
           this.displayMessage(msg)
+          $('textarea[name=content]')[0].value = ''
         }, function (error) {
-          // 异常处理
           console.error('Failed to create new object, with error message: ' + error.message)
         })
       } else {
@@ -67,11 +66,11 @@
         div_username = document.createElement('div'),
         div_content = document.createElement('div'),
         div_time = document.createElement('div')
-      
+
       div_username.textContent = message.attributes.username
       div_content.textContent = message.attributes.content
       div_time.textContent = message.createdAt.toLocaleString()
-      
+
       div_username.className = 'msg_username'
       div_content.className = 'msg_content'
       div_time.className = 'msg_time'
@@ -81,5 +80,5 @@
     },
   }
 
-  controller.init(view, model)  
+  controller.init(view, model)
 }.call()

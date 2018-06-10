@@ -289,7 +289,7 @@ section#messages > form input, section#messages > form textarea {
     box-sizing: border-box;
 }
 section#messages > form textarea {
-    max-width: 940px;
+    max-width: 908px;
     min-height: 100px;
 }
 section#messages > form input[type=submit] {
