@@ -1,26 +1,7 @@
 !function () {
   let view = View('section#messages')
 
-  var model = {
-    // 初始化
-    init: function () {
-      let APP_ID = 'cJEG2Dk1CraojDVdtANz144V-gzGzoHsz'
-      let APP_KEY = '3gOhg9eS5JbVpoNL19ASOaAT'
-      AV.init({ appId: APP_ID, appKey: APP_KEY })
-    },
-    // 获取留言数据
-    fetchMessages: function () {
-      let messagesQuery = new AV.Query('Messages')
-      return messagesQuery.find()
-    },
-    // 添加留言数据
-    addMessage: function (username, content) {
-      let MessagesDB = AV.Object.extend('Messages')
-      let message = new MessagesDB()
-      console.log(message)
-      return message.save({ 'username': username, 'content': content })
-    }
-  }
+  let model = Model({ tableName: 'Messages' })
 
   var controller = {
     view: null,
