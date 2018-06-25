@@ -3,24 +3,9 @@
 
   let model = Model({ tableName: 'Messages' })
 
-  var controller = {
-    view: null,
-    model: null,
-    init: function (view, model) {
-      this.view = view
-      this.model = model
-      this.model.init()
+  let controller = Controller({
+    init: function () {
       this.loadMessages()
-      this.bindEvents()
-    },
-    loadMessages: function () {
-      this.model.fetchMessages().then((msgs) => {
-        msgs.forEach((msg) => {
-          this.displayMessage(msg)
-        })
-      }, function (error) {
-        console.log(`Error: ${error}`)
-      })
     },
     bindEvents: function () {
       $('#postMsgForm').submit((e) => {
@@ -28,11 +13,20 @@
         this.submitMessage()
       })
     },
+    loadMessages: function () {
+      this.model.fetch().then((msgs) => {
+        msgs.forEach((msg) => {
+          this.displayMessage(msg)
+        })
+      }, function (error) {
+        console.log(`Error: ${error}`)
+      })
+    },
     submitMessage: function () {
       let username = $('input[name=username]')[0].value.trim(),
         content = $('textarea[name=content]')[0].value
       if (username.length !== 0 && content.trim().length !== 0) {
-        this.model.addMessage(username, content).then((msg) => {
+        this.model.add([{ key: 'username', value: username }, { key: 'content', value: content }]).then((msg) => {
           this.displayMessage(msg)
           $('textarea[name=content]')[0].value = ''
         }, function (error) {
@@ -59,7 +53,7 @@
       $(li).append(div_username, div_time, div_content)
       $('#messages > ol').append(li)
     },
-  }
+  })
 
   controller.init(view, model)
-}.call()
+}.call()    

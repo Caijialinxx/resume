@@ -1,11 +1,6 @@
 !function () {
   let view = View('#portfolio .works')
-  let controller = {
-    view: null,
-    init: function (view) {
-      this.view = view
-      this.bindEvents()
-    },
+  let controller = Controller({
     bindEvents: function () {
       let view = this.view
       var mySwiper = new Swiper(view.querySelector('.swiper-container'), this.options)
@@ -20,6 +15,7 @@
         prevEl: '.swiper-button-prev',
       }
     }
-  }
+  })
+
   controller.init(view)
 }.call()
