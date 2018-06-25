@@ -1,5 +1,5 @@
 !function () {
-  var view = document.querySelector('section#messages')
+  let view = View('section#messages')
 
   var model = {
     // 初始化
