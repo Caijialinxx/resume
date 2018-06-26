@@ -89,7 +89,7 @@ ul,ol { list-style: none; }
 [data-x] { opacity: 1; transform: translateY(0); transition: all 0.4s ease-out; }
 [data-x].offset { opacity: 0; transform: translateY(50px); }
 /* 名片 */
-section#about { margin: 0px auto; padding-top: 80px; }
+section#about { max-width: 940px; margin: 0px auto; padding-top: 80px; }
 .userCard { max-width: 940px; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 .userCard-inner { padding: 50px 25px; }
 .userCard .picture {
@@ -131,39 +131,6 @@ section#about { margin: 0px auto; padding-top: 80px; }
     text-align: center;
 }
 .userCard > footer.media a:hover { background-color: #cf5d5f; }
-
-@media (max-width: 950px) {
-    .userCard { max-width: 740px; min-width: 350px; margin: 0 auto;}
-    .userCard .userCard-inner { margin:0 auto; }
-    .userCard .picture {
-        width: 116px;
-        height: 116px;
-        float: left;
-        margin: 0 20px 0 24%;
-        border-radius: 50%;
-    }
-    .userCard .text {
-        float: none;
-        min-width: 260px;
-        margin: 0 auto;
-    }
-}
-@media (max-width: 540px) {
-    .userCard { max-width: 400px; min-width: 350px; margin: 0 auto;}
-    .userCard .userCard-inner { margin:0 auto; }
-    .userCard .picture {
-        width: 116px;
-        height: 116px;
-        float: none;
-        margin: 0 auto;
-        border-radius: 50%;
-    }
-    .userCard .text .brief {
-        text-align: center;
-    }
-    .userCard .profile-preword { display: none; }
-}
-
 
 /* 下载简历 */
 .downloadResume-wrapper { text-align: center; }
@@ -271,8 +238,10 @@ section#messages > ol > li > div.msg_time {
 }
 section#messages > form {
     max-width: 940px;
+    min-width: 400px;
     margin: 30px auto;
     padding: 0px 16px;
+    box-sizing: border-box;
 }
 section#messages > form > label {
     display: block;
@@ -282,25 +251,41 @@ section#messages > form input, section#messages > form textarea {
     display: block;
     margin: 10px 0px;
     padding: 6px;
-    min-width: 250px;
+    line-height: 26px;
     border-radius: 4px;
     border: none;
     font-size: 16px;
     box-sizing: border-box;
 }
 section#messages > form textarea {
-    max-width: 908px;
+    max-width: 100%;
     min-height: 100px;
 }
 section#messages > form input[type=submit] {
     background: #007aff;
 }
-@media (max-width: 950px) {
-    section#messages { max-width: 740px; min-width: 350px; margin: 0 auto;}
-}
-@media (max-width: 540px) {
-    section#messages { max-width: 400px; min-width: 350px; margin: 0 auto;}
-    section#messages > form textarea { max-width: 368px; min-width: 318px; }
-}
 
 footer.footer { text-align: center; margin: 20px 0; }
+
+
+@media (min-width: 950px) {
+    section#messages > form input, section#messages > form textarea { width: 540px;  }
+}
+@media (max-width: 950px) {
+    .userCard .picture { float: left; margin: 0 20px 0 24%; width: 116px; height: 116px; border-radius: 50%; }
+    .userCard .text { float: none; min-width: 260px; margin: 0 auto; }
+    section#about, section#skills, section#portfolio, section#messages { max-width: 740px; }
+    section#messages > form input, section#messages > form textarea { max-width: 540px; width: 100%; }
+}
+@media (max-width: 540px) {
+    section#about, section#skills, section#portfolio, section#messages { max-width: 400px; }
+    section#messages > form input, section#messages > form textarea { max-width: 100%; width: 100%; }
+    .userCard .picture { float: none; margin: 0 auto; }
+    .userCard .text .brief { text-align: center; }
+    .userCard .profile-preword { display: none; }
+    
+}
+@media (max-width: 375px) {
+    section#about, section#skills, section#portfolio, section#messages { width: 350px; }
+    section#messages > form input, section#messages > form textarea { width: 318px; }
+}
