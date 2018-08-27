@@ -170,38 +170,46 @@ section#skills .progressBar > .progress { height: 100%; background-color: #E6686
 section#skills.offset .progress { transform: translateX(-200px); }
 /* 作品集 */
 section#portfolio { text-align: center; }
-section#portfolio > nav { text-align: center; display: inline-block; margin: 32px; }
-section#portfolio > nav > ol > li { float: left; cursor: pointer; margin: 0 5px; }
-section#portfolio > nav > ol > li:nth-child(2) { margin: 0 50px; }
-section#portfolio > nav > .bar{
-    height: 5px;
-    background-color: #fff;
-    border-radius: 2px;
-    margin: 4px 0;
+section#portfolio .works {
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
-section#portfolio > nav > .bar > .bar-inner{
-    height: 100%;
-    background-color: #E6686A;
-    border-radius: 2px;
-    transition: all 0.3s;
+section#portfolio .works > .row {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
 }
-section#portfolio > nav > .bar > .bar-inner.state1{
-    width: 42px;
-    margin-left: 0;
+section#portfolio .row .item {
+  width: 50%;
+  margin: 0 6px;
+  position: relative;
+  overflow: hidden;
 }
-section#portfolio > nav > .bar > .bar-inner.state2{
-    width: 42px;
-    margin-left: 87px;
+section#portfolio .row .item > .intro-wrapper {
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+  color: #eee;
+  line-height: 1.6;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #00000099;
+  transition: all 0.3s;
 }
-section#portfolio > nav > .bar > .bar-inner.state3{
-    width: 110px;
-    margin-left: 174px;
+section#portfolio .row .item > .intro-wrapper a {
+  text-decoration: underline;
 }
-section#portfolio > .works{
-    margin: 30px auto;
+section#portfolio .row .item > .intro-wrapper h3 {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
 }
-/* 作品轮播的自定义样式 */
-section#portfolio > .works .swiper-container {
+section#portfolio .row img {
     width: 100%;
 }
 /* 留言板 */
@@ -290,6 +298,8 @@ footer.footer { text-align: center; margin: 20px 0; }
     .userCard .text .brief { text-align: center; }
     .userCard .profile-preword { display: none; }
     section#skills ol > li { width: 40px; height: 40px; margin: 10px 8px; }
+    section#portfolio .works > .row { flex-direction: column; }
+    section#portfolio .row .item { width: 100%; margin: 10px 0; }
 }
 @media (max-width: 375px) {
     section#about, section#skills, section#portfolio, section#messages { width: 350px; }

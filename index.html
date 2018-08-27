@@ -179,49 +179,40 @@
 
     <section data-x id="portfolio" class="offset">
       <h2>作品集</h2>
-      <!-- <nav>
-        <ol class="clearfix">
-          <li id="nav1">所有</li>
-          <li id="nav2">框架</li>
-          <li id="nav3">原生JS &amp; CSS</li>
-        </ol>
-        <div class="bar">
-          <div id="bar" class="bar-inner state1"></div>
-        </div>
-      </nav> -->
-      <!-- BEGIN slides.js 的 view -->
       <div class="works">
-        <!-- Slider main container -->
-        <div class="swiper-container">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <img src="images/works/apple-like_slide.png" alt="苹果风格的轮播" class="swiper-slide">
-            <img src="images/works/bookmarks.png" alt="书签导航" class="swiper-slide">
-            <img src="images/works/canvas.png" alt="画板" class="swiper-slide">
-            <img src="images/works/slide.png" alt="轮播" class="swiper-slide">
+        <div class="row">
+          <div class="item">
+            <a href="https://caijialinxx.github.io/Slides/"><img src="./images/works/slide.png" alt="不同风格的轮播"></a>
+            <div class="intro-wrapper">
+              <h3>不同风格的轮播</h3> | <a href="https://github.com/Caijialinxx/Slides">view source</a>
+              <p>使用 jQuery 实现 Loop 模式和缩略图模式两种轮播，适配移动端</p>
+            </div>
           </div>
-          <!-- pagination -->
-          <div class="swiper-pagination"></div>
-          <!-- navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <div class="item">
+            <a href="https://caijialinxx.github.io/animating-resume/"><img src="./images/works/resume.png" alt="简历生成器"></a>
+            <div class="intro-wrapper">
+              <h3>简历生成器</h3> | <a href="https://github.com/Caijialinxx/animating-resume/blob/master/main.js">view source</a>
+              <p>使用 Promise 对象实现分段式动态绘制制作 Markdown 简历，使用 ES6 语法</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="item">
+            <a href="https://caijialinxx.github.io/todo-react/build/"><img src="./images/works/todo.png" alt="极简清单"></a>
+            <div class="intro-wrapper">
+              <h3>极简清单</h3> | <a href="https://github.com/Caijialinxx/todo-react">view source</a>
+              <p>使用 React 实现一个极简的待办清单</p>
+            </div>
+          </div>
+          <div class="item">
+            <a href="https://arcane-mountain-17783.herokuapp.com/"><img src="./images/works/chatroom.png" alt="壹号聊天室"></a>
+            <div class="intro-wrapper">
+              <h3>壹号聊天室</h3> | <a href="https://github.com/Caijialinxx/IMsystem">view source</a>
+              <p>使用 Node.js 实现一个在线聊天室</p>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- END slides.js 的 view -->
-      <script>
-        nav1.onclick = function () {
-          bar.className = "bar-inner state1";
-          big.style.display = "block";
-        }
-        nav2.onclick = function () {
-          bar.className = "bar-inner state2";
-        }
-        nav3.onclick = function () {
-          bar.className = "bar-inner state3";
-          big.style.display = "none";
-        }
-      </script>
     </section>
 
     <section data-x id="messages" class="offset">
@@ -254,6 +245,7 @@
 <script src="js/base/Model.js"></script>
 <script src="js/base/Controller.js"></script>
 <script src="js/showDetail.js"></script>
+<script src="js/showIntro.js"></script>
 <script src="js/loading.js"></script>
 <script src="js/messagesDB.js"></script>
 <script src="js/scroll_topNavBar_change.js"></script>
