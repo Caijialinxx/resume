@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.2/css/swiper.min.css">
   <!-- favicon的加载地址及样式 -->
   <script src="https://at.alicdn.com/t/font_548995_g7ry9wuf3z5jnhfr.js"></script>
+  <script src="https://at.alicdn.com/t/font_809215_q57j1jk2lo.js"></script>
   <style type="text/css">
     .icon {
       width: 1em;
@@ -55,22 +56,15 @@
               <a href="#messages">Messages</a>
             </li>
             <li>
-              <a href="https://github.com/Caijialinxx" target="_blank">Github</a>
+              <a href="https://github.com/Caijialinxx" target="_blank">GitHub</a>
             </li>
             <li>
               <a href="https://caijialinxx.github.io" target="_blank">Blog</a>
-              <ul class="submenu">
-                <li>博客1</li>
-                <li>博客2</li>
-                <li>博客3</li>
-              </ul>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
             </li>
           </ul>
           <!-- END show-submenu.js 的 view -->
         </nav>
+        <!-- <div id="nav_thumbnail"></div> -->
       </div>
     </div>
 
@@ -105,7 +99,7 @@
               <dt>邮箱</dt>
               <dd>caijialinxx@foxmail.com</dd>
               <dt>手机</dt>
-              <dd>1371709****</dd>
+              <dd>137********</dd>
             </dl>
           </div>
         </div>
@@ -126,53 +120,61 @@
       <p class="downloadResume-wrapper">
         <a class="downloadResume" href="caijialin-resume.pdf" target="_blank" download>下载 PDF 简历</a>
       </p>
-
-      <p class="selfIntroduction">
-        蔡嘉琳，....
-      </p>
     </section>
 
     <section data-x id="skills" class="offset">
       <h2>技能</h2>
-      <ol class="clearfix">
-        <li>
-          <h3>HTML5 &amp; CSS3</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:80%"></div>
-          </div>
-        </li>
-        <!-- 如果在HTML中添加特殊符号如“&”，则需要添加转义符“\”或者“&amp;” -->
-        <li>
-          <h3>JavaScript</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:85%"></div>
-          </div>
-        </li>
-        <li>
-          <h3>jQuery</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:50%"></div>
-          </div>
-        </li>
-        <li>
-          <h3>Vue</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:1%"></div>
-          </div>
-        </li>
-        <li>
-          <h3>React</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:1%"></div>
-          </div>
-        </li>
-        <li>
-          <h3>HTTP</h3>
-          <div class="progressBar">
-            <div class="progress" style="width:70%"></div>
-          </div>
-        </li>
-      </ol>
+      <div class="skills-inner">
+        <ol>
+          <li data-name='HTML'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-html"></use>
+            </svg>
+          </li>
+          <li data-name='CSS'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-css"></use>
+            </svg>
+          </li>
+          <li data-name='JavaScript'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-javascript"></use>
+            </svg>
+          </li>
+          <li data-name='jQuery'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-jquery"></use>
+            </svg>
+          </li>
+          <li data-name='React & React Native'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-react"></use>
+            </svg>
+          </li>
+          <li data-name='Webpack'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-webpack"></use>
+            </svg>
+          </li>
+          <li data-name='移动端开发'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-mobile"></use>
+            </svg>
+          </li>
+          <li data-name='Node.js'>
+            <img src="./images/nodejs.png" alt="Node.js">
+          </li>
+          <li data-name='其他'>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-more"></use>
+            </svg>
+          </li>
+        </ol>
+        <div class="detail">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
     </section>
 
     <section data-x id="portfolio" class="offset">
@@ -251,6 +253,7 @@
 <script src="js/base/View.js"></script>
 <script src="js/base/Model.js"></script>
 <script src="js/base/Controller.js"></script>
+<script src="js/showDetail.js"></script>
 <script src="js/loading.js"></script>
 <script src="js/messagesDB.js"></script>
 <script src="js/scroll_topNavBar_change.js"></script>

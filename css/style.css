@@ -154,14 +154,17 @@ section#about { max-width: 940px; margin: 0px auto; padding-top: 80px; }
 section#skills, section#portfolio, section#messages { max-width: 940px; margin: 0px auto; padding-top: 80px; }
 section#skills h2, section#portfolio h2, section#messages h2 { text-align: center; color: #3d4451; font-size: 34px; line-height: 1.2; font-weight: 600; }
 /* 技能 */
-section#skills h3 { font-size: 14px; line-height: 1.1; padding-right: 40px; }
-section#skills > ol { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
-section#skills > ol > li{
-    float: left;
-    width: 50%;
-    padding: 20px;
-    box-sizing: border-box;         /*使得即使添加了padding值也不会影响整体的宽度，即边框和内边距的值包含在width内*/
-}
+section#skills > .skills-inner { padding: 20px 30px; max-width: 940px; margin: 30px auto; background-color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); display: flex; }
+section#skills > .skills-inner ol { width: 65%; display: flex; flex-wrap: wrap; transition: all 0.2s; }
+section#skills > .skills-inner .detail { width: 35%; padding: 20px 15px; }
+section#skills ol > li { width: 48px; height: 48px; margin: 20px 15px; padding: 5px; transition: all 0.2s; }
+section#skills ol > li:hover { transform: scale(1.2); }
+section#skills ol > li.active { transform: scale(1.2); }
+section#skills ol > li svg { width: 100%; height: 100%; }
+section#skills ol > li img { width: 100%; margin: 10px 0; }
+section#skills .detail h3 { font-size: 16px; font-weight: bold; text-align: center; margin: 6px 0 12px 0; }
+section#skills .detail p { font-size: 14px; text-indent: 2em; line-height: 1.6; }
+section#skills .detail p a { text-decoration: underline; }
 section#skills .progressBar { height: 5px; background-color: #fae1e1; border-radius: 2px; margin: 4px 0; overflow: hidden; }
 section#skills .progressBar > .progress { height: 100%; background-color: #E6686A; border-radius: 2px; transition: all 0.3s ease-out; }
 section#skills.offset .progress { transform: translateX(-200px); }
@@ -278,6 +281,7 @@ footer.footer { text-align: center; margin: 20px 0; }
 @media (max-width: 770px) {
     section#about, section#skills, section#portfolio, section#messages { max-width: 580px; }
     section#messages > form input, section#messages > form textarea { max-width: 100%; width: 100%; }
+    section#skills ol > li { width: 42px; height: 42px; margin: 12px 10px; }
 }
 @media (max-width: 600px) {
     section#about, section#skills, section#portfolio, section#messages { max-width: 450px; }
@@ -285,8 +289,10 @@ footer.footer { text-align: center; margin: 20px 0; }
     .userCard .picture { float: none; margin: 0 auto; }
     .userCard .text .brief { text-align: center; }
     .userCard .profile-preword { display: none; }
+    section#skills ol > li { width: 40px; height: 40px; margin: 10px 8px; }
 }
 @media (max-width: 375px) {
     section#about, section#skills, section#portfolio, section#messages { width: 350px; }
     section#messages > form input, section#messages > form textarea { width: 318px; }
+    section#skills > .skills-inner { padding: 20px 15px; }
 }
