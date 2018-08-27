@@ -272,7 +272,7 @@ section#messages > form textarea {
     min-height: 100px;
 }
 section#messages > form input[type=submit] {
-    background: #007aff;
+    background: #E6686A;
 }
 
 footer.footer { text-align: center; margin: 20px 0; }
