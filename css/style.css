@@ -24,9 +24,7 @@ ul,ol { list-style: none; }
 /* 为了使整个topNavBar脱离文档流，并解决其带来的不良后果，而添加的div.topNavBar-inner */
 .topNavBar-inner { padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
 /* LOGO */
-.topNavBar .logo { padding: 6px 0; font-size: 24px; font-family: "Segoe UI Black"; }
-.topNavBar .logo > .cjl { color: #E6686A; margin-right: 4px; }
-.topNavBar .logo > .card { color: #9a9da2; }
+.topNavBar .logo { color: #E6686A; padding: 6px 0; font-size: 24px; font-family: "Segoe UI Black", "Gill Sans", "PingFang SC"; }
 /* 导航栏 */
 .topNavBar nav { padding: 8px 0 4px 0; }
 .topNavBar nav > ul { display: flex; }
@@ -166,6 +164,23 @@ section#skills ol > li img { width: 100%; margin: 10px 0; }
 section#skills .detail h3 { font-size: 16px; font-weight: bold; text-align: center; margin: 6px 0 12px 0; }
 section#skills .detail p { font-size: 14px; text-indent: 2em; line-height: 1.6; }
 section#skills .detail p a { text-decoration: underline; }
+section#skills .detail .gogo { position: relative; }
+section#skills .detail .gogo .gogo_qrcode {
+  position: absolute;
+  z-index: 2;
+  top: 105%;
+  left: -50%;
+  width: 180px;
+  height: 180px;
+  transform: scale(0);
+  opacity: 0;
+  border: 6px solid #fafafa;
+  box-shadow: 0 0 4px 0 #ddd;
+  background: #fafafa;
+  border-radius: 4px;
+  transition: transform 10ms, opacity 0.3s ease-in-out;
+}
+section#skills .detail .gogo:hover .gogo_qrcode { opacity: 1; transform: scale(1); }
 section#skills .progressBar { height: 5px; background-color: #fae1e1; border-radius: 2px; margin: 4px 0; overflow: hidden; }
 section#skills .progressBar > .progress { height: 100%; background-color: #E6686A; border-radius: 2px; transition: all 0.3s ease-out; }
 section#skills.offset .progress { transform: translateX(-200px); }
@@ -181,12 +196,22 @@ section#portfolio .works > .row {
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 section#portfolio .row .item {
   width: 50%;
   margin: 0 6px;
   position: relative;
   overflow: hidden;
+}
+section#portfolio .row .item.gogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+section#portfolio .row .item.gogo img {
+  width: 150px;
 }
 section#portfolio .row .item > .intro-wrapper {
   position: absolute;

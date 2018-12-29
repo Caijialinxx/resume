@@ -5,12 +5,14 @@
 - 20岁
 - 女
 - 深圳
-- Y2FpamlhbGlueHhAZm94bWFpbC5jb20=
+- caijialinxx@foxmail.com
 
 ## 技能
 - HTML
 - CSS
 - JS
+- Vue
+- React & React Native
 - JQUERY
 - AJAX
 - JSON
