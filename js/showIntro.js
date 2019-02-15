@@ -4,7 +4,6 @@
     items: null,
     bindEvents: function () {
       items = view.querySelectorAll('.item')
-      console.log(items)
       for (let i = 0; i < items.length; i++) {
         $(items[i]).mouseenter(this.showIntro.bind(this))
         $(items[i]).mouseleave(this.hideIntro.bind(this))
